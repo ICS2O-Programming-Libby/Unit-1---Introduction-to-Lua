@@ -16,6 +16,7 @@ display.setDefault("background", 242/255, 212/255, 245/255)
 -----------------------------------------------------------------------------------------
 
 --creat local variables
+local Incorrect 
 local questionObject
 local correctObject
 local NumericTextFields
@@ -60,6 +61,7 @@ local function NumericFieldListener( event )
 
 		--if the users answer and thhe correct answer are the same:
 		if (userAnswer == correctAnswer) then
+			display.new
 			correctObject.isVisible = true
 			timer.performWithdelay(2000, HideCorrect)
 		end
@@ -70,32 +72,21 @@ end
 --OBJECT CREATION
 ---------------------------------------------------------------------------------------------
 
---dis[lays a question and sets the colour 
+--displays a question and sets the colour 
 questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 50)
 questionObject:setTextColor(195/255, 147/255, 200/255)
 
 --create the correct text object and make it invisible 
+correctObject = display.newText("",  display.contentWidth/3, display.contentHeight*2/3, nil, 50)
+correctObject:setTextColor(195/255, 147/255, 200/255)
+correctObject.isVisible = false
 
+--create numeric field
+numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80 )
+numericField.inputType = "number"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--add the event listner for the numeric field 
+numericField:addEventListener( "userInput", NumericFieldListener )
 
 --------------------------------------------------------------------
 --FUNCTION CALLS
