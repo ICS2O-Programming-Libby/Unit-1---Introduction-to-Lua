@@ -50,8 +50,9 @@ end
 
 local function NumericFieldListener( event )
 	-- user begins editing "numericfield"
-	if ( even.phase == "began") then 
+	if ( event.phase == "began") then 
 		--clear text field 
+		
 		event.target.text = ""
 
 	elseif event.phase == "submitted" then 
@@ -61,12 +62,15 @@ local function NumericFieldListener( event )
 
 		--if the users answer and thhe correct answer are the same:
 		if (userAnswer == correctAnswer) then
-			display.new
 			correctObject.isVisible = true
-			timer.performWithdelay(2000, HideCorrect)
+			timer.performWithDelay(2000, HideCorrect)
 		end
+		--clear the text field
+		event.target.text = ""
 	end 
 end 
+
+
 
 ---------------------------------------------------------------------------------------------
 --OBJECT CREATION
