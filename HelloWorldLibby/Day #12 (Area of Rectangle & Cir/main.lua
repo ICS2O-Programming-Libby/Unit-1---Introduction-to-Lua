@@ -1,30 +1,31 @@
+-----------------------------------------------------------------------------------------
 --libby V.
 -- calculating the area of a circle and rectangle
 --ICS2O programing
+-----------------------------------------------------------------------------------------
 
--- create my local variables
+-- create my local variables for rectangle
 local areaText
-local textSize = 50
+local textSize = 40
 local myRectangle
-local widthOfRectangle = 150
-local heightOfRectangle = 75
+local widthOfRectangle = 100
+local heightOfRectangle = 50
 local areaOfRectangle
+
+-- create the variables for circle 
 local PI = 3.14
 local radiusofCircle = 90 
--- set the background colour of my screen. Remember that colors are between 0 and 1.
+local myCircle 
+-- set the background colour of my screen. 
 display.setDefault("background", 205/255,220/255, 243/255)
 
--- remove the status bar
+-- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
 -- draw the rectangle that is half the width and height of the screen size.
 myRectangle = display.newRect(0, 0, widthOfRectangle, heightOfRectangle)
 
--- anchor the rectangle in the top left corner of the screen and set its (x,y) position
-myRectangle.anchorX = 0
-myRectangle.anchorY = 0
-myRectangle.x = 40
-myRectangle.y = 40
+
 -- set the width of the border
 myRectangle.strokeWidth = 5
 
@@ -41,5 +42,15 @@ areaOfRectangle = widthOfRectangle * heightOfRectangle
 areaText = display.newText("The area of this rectangle with a width of " ..
 	widthOfRectangle .. " and a height of " .. heightOfRectangle .. " is " ..
 	areaOfRectangle .. " pixels².", 0, 0, OpenSansCondensed, 12)
+
+------------------------------------------------------------------------------------------
+--CREATE CIRCLE 
+------------------------------------------------------------------------------------------
+
+--display the circle
+local myCircle = display.newCircle( 100, 100, 30 )
+myCircle:setFillColor( 0.5 )
+myCircle.strokeWidth = 5
+myCircle:setStrokeColor( 1, 0, 0 )
 
 
