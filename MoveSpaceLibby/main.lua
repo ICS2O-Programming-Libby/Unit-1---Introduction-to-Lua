@@ -60,5 +60,3 @@ end
 
 --MoveGirl will be called over and over again
 Runtime:addEventListener("enterFrame", MoveGirl)
-
-
