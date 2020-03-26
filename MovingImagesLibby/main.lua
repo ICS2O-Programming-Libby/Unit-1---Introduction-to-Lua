@@ -14,13 +14,13 @@ display.setStatusBar(display.HiddenStatusBar)
 scrollSpeed = 5
 
 --background image with width and height
-local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
+local backgroundImage = display.newImageRect("Images/background.png", 10000, 7000)
 
 --Charecter image with width and height
 local beetleship = display.newImageRect("Images/beetleship.png", 200, 200)
 
 --set the image to be transparent 
-beetleship.alpha = 1
+beetleship.alpha = 0
 
 --set the initial x and y position of beetleship
 beetleship.x = 0
@@ -51,7 +51,7 @@ local girl = display.newImageRect("Images/girl5.png", 200, 200)
 --Input: this function accepts an event listner
 --Output:none
 --description: This function adds the scroll speed to the x-value of the ship
-local function MoveGirl( event)
+local function MoveGirl( event) 
 	-- add the scroll speed to the x-value od the ship
 	girl.x = girl.x - scrollSpeed
 	--change the transparency of the ship every time it moves so that it fades out

@@ -11,14 +11,14 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 --create local variables 
-local background = display.newImageRect("Images/background.png")
-local planet = display.newImageRect ("Images/planet.png")
+local background = display.newImageRect("Images/background.png", 10000, 7000)
+local planet = display.newImageRect ("Images/planet.png", 200, 200)
 local planetWidth = planet.width
 local planetHeight = planet.height
 
-local StarGirl = display.newImageRect("Image/girl5.png")
-local StarGirlWidth = stargirl.width
-local StarGirlHeight = stargirl.height
+local StarGirl = display.newImageRect("Images/girl5.png", 200, 200)
+local StarGirlWidth = StarGirl.width
+local StarGirlHeight = StarGirl.height
 
 --my boolean variables to keep trak of which object I touched first 
 local alreadyTouchedPlanet = false
@@ -42,19 +42,19 @@ local function StarGirlListener(touch)
 		end
 	end
 
-    if ( (touch.phase == "moved ") and (alreadyTouchedStarGirl == true) )	then 
-       StarGirl.x = StarGirl.x
-       StarGirl.y = StarGirl.y
+    if ( (touch.phase == "moved") and (alreadyTouchedStarGirl == true) )	then 
+       StarGirl.x = touch.x
+       StarGirl.y = touch.y
     end
     
-    if (touch.phase == 'ended') then 
+    if (touch.phase == "ended") then 
        alreadyTouchedStarGirl = false 
        alreadyTouchedPlanet = false 
     end 
 end
  
 -- add the respective listeners to each objet 
-StarGirl:addEventLisntener("touch", StarGirlListener)
+StarGirl:addEventListener("touch", StarGirlListener)
 
 --Function:PlanetListener
 --Input: touch listner
@@ -67,14 +67,40 @@ local function PlanetListener(touch)
 		end	
 	end
 	if ( (touch.phase == "moved") and (alreadyTouchedPlanet == true) ) then 
-		planet.x = planet.x
-		planet.y = planet.y
+		planet.x = touch.x
+		planet.y = touch.y
 	end 
-	if (touc.phase == "ended")	then 
+	if (touch.phase == "ended")	then 
 		alreadyTouchedPlanet = false
 		alreadyTouchedStarGirl = false
 	end 	
 end
 
 --add the respective listners to each object
-planet:addEventLisntener("touch", PlanetListener)
+planet:addEventListener("touch", PlanetListener)
+
+-------------------------------------------------------------------------------
+--CREATE OBJECT THAT JUST MOVES 
+-------------------------------------------------------------------------------
+
+--set the scroll speed global variables
+scrollSpeed = 3
+
+--display new image 
+local star = display.newImageRect("Images/star.png", 200, 200)
+
+--set the initial position 
+star.x = 1024
+star.y = 700
+
+--Function: Move
+--Input: this function accepts an event listner
+--Output:none
+--description: This function adds the scroll speed to the x-value of the ship
+local function MoveStar( event) 
+	-- add the scroll speed to the x-value od the ship
+	star.x = star.x - scrollSpeed
+end
+
+--MoveStar will be called over and over again
+Runtime:addEventListener("enterFrame", MoveStar)
